@@ -15,12 +15,13 @@ python main.py
 ```
 
 ## Game Features
+* = coming soon
 
 - Multiple animal towers with unique abilities
 - Different enemy types
-- Various game modes (Campaign, Endless, Challenge)
-- Tower upgrades and special abilities
-- Multiple maps and environments
+- Various game modes (Campaign, Endless, Challenge)*
+- Tower upgrades and special abilities*
+- Multiple maps and environments*
 
 ## Controls
 
