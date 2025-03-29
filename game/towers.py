@@ -51,7 +51,7 @@ class MeerkatScout(Tower):
     def __init__(self, x, y):
         super().__init__(x, y)
         self.damage = 5
-        self.attack_speed = 2.5
+        self.attack_speed = 5
         self.range = 150
         self.cost = 75
         
@@ -62,12 +62,24 @@ class MeerkatScout(Tower):
 class ChameleonSniper(Tower):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.damage = 30
-        self.attack_speed = 3
-        self.range = 200
+        self.damage = 20
+        self.attack_speed = 2
+        self.range = 250
         self.cost = 100
         self.is_hidden = True
         
     def special_ability(self):
         # toggle visibility
         self.is_hidden = not self.is_hidden
+
+class CrocodileChomper(Tower):
+    def __init__(self, x, y):
+        super().__init__(x, y)
+        self.damage = 60
+        self.attack_speed = 0.75
+        self.range = 100
+        self.cost = 225
+
+    def special_ability(self):
+        pass
+

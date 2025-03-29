@@ -48,3 +48,7 @@ class InvasiveSpecies(Enemy):
     def __init__(self, path, health=75, speed=3, damage=15, reward=20):
         super().__init__(path, health, speed, damage, reward)
         self.reproduction_rate = 0.1  # Chance to spawn new enemy
+
+class Bulldozer(Enemy):
+    def __init__(self, path, health=2000, speed=0.75, damage=50, reward=80):
+        super().__init__(path, health, speed, damage, reward)

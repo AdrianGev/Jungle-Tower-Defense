@@ -58,7 +58,7 @@ WAVES = [
         ("deforester", 4500),
     ],
     
-    # Wave 5 - Boss wave
+    # Wave 5 - Difficult Wave
     [
         ("invasive", 0),
         ("deforester", 500),
@@ -71,6 +71,27 @@ WAVES = [
         ("deforester", 4100),
         ("deforester", 4200),
     ],
+
+    # Wave 6 - Invasive Crisis
+    [
+        ("invasive", 0),
+        ("invasive", 250),
+        ("invasive", 500),
+        ("invasive", 750),
+        ("invasive", 1000),
+        ("invasive", 1250),
+        ("invasive", 1500),
+        ("invasive", 1750),
+        ("invasive", 2000),
+
+    ],
+
+    # Wave 7 - Bulldozer
+    [
+        ("bulldozer", 0)
+
+
+    ]
 ]
 
 # Enemy stats
@@ -92,5 +113,11 @@ ENEMY_STATS = {
         "speed": 3,
         "damage": 15,
         "reward": 20
+    },
+    "bulldozer": {
+        "health": 2000,
+        "speed": 0.75,
+        "damage": 50,
+        "reward": 80
     }
 }

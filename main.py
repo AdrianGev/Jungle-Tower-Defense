@@ -2,8 +2,8 @@ import pygame
 import sys
 import os
 import time
-from game.towers import MeerkatScout, ChameleonSniper
-from game.enemies import Poacher, Deforester, InvasiveSpecies
+from game.towers import MeerkatScout, ChameleonSniper, CrocodileChomper
+from game.enemies import Poacher, Deforester, InvasiveSpecies, Bulldozer
 from game.waves import WAVES, ENEMY_STATS
 
 pygame.init()
@@ -64,6 +64,13 @@ class Game:
                 "cost": 100,
                 "description": "High damage, long range",
                 "stats": ["Damage: 30", "Speed: 3.0/s", "Range: 200"]
+            },
+            "crocodile": {
+                "class": CrocodileChomper,
+                "name": "Crocodile Chomper",
+                "cost": 225,
+                "description": "Very high damage, short range",
+                "stats": ["Damage: 60", "Speed 0.75/s", "Range 75"]
             }
         }
         
@@ -113,6 +120,8 @@ class Game:
                     enemy = Poacher(self.path, stats["health"], stats["speed"], stats["damage"], stats["reward"])
                 elif enemy_type == "deforester":
                     enemy = Deforester(self.path, stats["health"], stats["speed"], stats["damage"], stats["reward"])
+                elif enemy_type == "bulldozer":
+                    enemy = Bulldozer(self.path, stats["health"], stats["speed"], stats["damage"], stats["reward"])
                 else:  # invasive
                     enemy = InvasiveSpecies(self.path, stats["health"], stats["speed"], stats["damage"], stats["reward"])
                 
@@ -195,6 +204,9 @@ class Game:
                         # chameleon button area
                         elif 200 <= mouse_pos[1] <= 300:
                             self.selected_tower_type = "chameleon"
+                        # crocodile button area
+                        elif 340 <= mouse_pos[1] <= 440:
+                            self.selected_tower_type = "crocodile"
                     # handle start wave button
                     elif not self.wave_started and mouse_pos[1] > WINDOW_HEIGHT - 60 and WINDOW_WIDTH - SIDEBAR_WIDTH - 150 <= mouse_pos[0] <= WINDOW_WIDTH - SIDEBAR_WIDTH:
                         self.wave += 1
@@ -265,9 +277,15 @@ class Game:
         pygame.draw.rect(self.screen, RED, (base_x - 30, base_y - 35, 60, 8))
         pygame.draw.rect(self.screen, GREEN, (base_x - 30, base_y - 35, health_width, 8))
         
-        # draw towers
+        # draw towers COLOR
+
         for tower in self.towers:
-            color = RED if isinstance(tower, MeerkatScout) else BLACK
+            if isinstance(tower, MeerkatScout):
+                color = RED
+            elif isinstance(tower, ChameleonSniper):
+                color = BLACK
+            elif isinstance(tower, CrocodileChomper):
+                color = GREEN
             pygame.draw.rect(self.screen, color, 
                            (tower.x + 5, tower.y + 5, GRID_SIZE - 10, GRID_SIZE - 10))
             # only draw range circle if tower is selected (wow such awesome game dev skills!!)
@@ -313,7 +331,12 @@ class Game:
                 pygame.draw.rect(self.screen, BLUE, box_rect, 3)
             
             # tower icon
-            icon_color = RED if tower_type == "meerkat" else BLACK
+            if tower_type == "meerkat":
+                icon_color = RED
+            elif tower_type == "chameleon":
+                icon_color = BLACK
+            elif tower_type == "crocodile":
+                icon_color = GREEN
             pygame.draw.rect(self.screen, icon_color,
                            (WINDOW_WIDTH - SIDEBAR_WIDTH + 20, y_offset + 10, 40, 40))
             
